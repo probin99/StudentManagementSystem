@@ -43,6 +43,7 @@ namespace StudentManagementSystem
         {
             if (!string.IsNullOrEmpty(txtStudentName.Text))
             {
+                //Regex Comparision
                 if (Regex.IsMatch(txtStudentName.Text, @"^[a-zA-Z]+$"))
                 {
                     txtYearLevel.IsEnabled = true;

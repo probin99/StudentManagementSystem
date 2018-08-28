@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,7 +36,11 @@ namespace StudentManagementSystem
         private void btnCreateStudent_Click(object sender, RoutedEventArgs e)
         {
             txtPerformanceOutput.Clear();
-            txtPerformanceOutput.Text = "Student Name" + "\t" + txtStudentName.Text + "\t\t" + " Year Level" + "\t" + txtYearLevel.Text + "\n" + "Student added to the system. You can now load Assessments using the Load Assessment Button";
+            StringBuilder outputString = new StringBuilder();
+            outputString.AppendLine("Student Name: " + txtStudentName.Text);
+            outputString.AppendLine("Year Level: " + txtYearLevel.Text);
+            outputString.AppendLine("Student added to the system. You can now load Assessments using the Load Assessment Button");
+            txtPerformanceOutput.Text = outputString.ToString();
             btnLoadAssessment.IsEnabled = true;
         }
 

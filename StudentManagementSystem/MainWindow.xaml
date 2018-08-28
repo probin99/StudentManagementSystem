@@ -15,21 +15,21 @@
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="20,30, 20, 320">
         <!--student detail inputs-->        
         <Label Name="lblStudentName" Content="Student Name" HorizontalAlignment="Left" Margin="0,0,0,0" />
-        <TextBox Name="txtStudentName" Width="180px" Height="20px" HorizontalAlignment="Left" Margin="90,0,0,0" TextChanged="txtStudentName_TextChanged"/>
+        <TextBox Name="txtStudentName" Width="180px" Height="20px" HorizontalAlignment="Left" Margin="90,0,0,0" TextChanged="TxtStudentName_TextChanged"/>
         <Label Name="lblYearLevel" Content="Year Level" HorizontalAlignment="Left" Margin="300,0,0,0" />
-        <TextBox IsEnabled="False" Name="txtYearLevel" Width="100px" Height="20px" HorizontalAlignment="left" Margin="370,0,0,0" TextChanged="txtYearLevel_TextChanged_1" />
+        <TextBox IsEnabled="False" Name="txtYearLevel" Width="100px" Height="20px" HorizontalAlignment="left" Margin="370,0,0,0" TextChanged="TxtYearLevel_TextChanged_1" />
         </Grid>
         
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,70,20,260">
             
             <!--Subjects selection-->
             <Label Name="lblSubjects" Content="Subjects" Margin="0"/>
-            <ComboBox IsEditable="True" Text="Select Subject.." Name="cbSubjects" HorizontalAlignment="Left" Width="150"  Margin="55,0,0,0" SelectionChanged="cbSubject_SelectionChanged">
+            <ComboBox IsEditable="True" Text="Select Subject.." Name="cbSubjects" HorizontalAlignment="Left" Width="150"  Margin="55,0,0,0" SelectionChanged="CbSubject_SelectionChanged">
             </ComboBox>
             
             <!--Assessments selection-->
             <Label Name="lblAssessments" Content="Assessments" HorizontalAlignment="Left"  Margin="220,0,0,0"/>
-            <ComboBox IsEditable="True" Text="Select Assessment.." Name="cbAssessments" Width="180" HorizontalAlignment="Left" Margin="298,0,0,0" SelectionChanged="cbAssessments_SelectionChanged" >
+            <ComboBox IsEditable="True" Text="Select Assessment.." Name="cbAssessments" Width="180" HorizontalAlignment="Left" Margin="298,0,0,0" SelectionChanged="CbAssessments_SelectionChanged" >
             </ComboBox>
 
             <!--Achievements selection-->
@@ -74,13 +74,13 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="7*"/>
             </Grid.RowDefinitions>            
-            <Button Name="btnCreateStudent" Content="Create Student" IsEnabled="False" Grid.Row="0" Grid.Column="0" Click="btnCreateStudent_Click"/>
-            <Button Name="btnLoadAssessment" Content="Load Assessment" IsEnabled="False" Grid.Row="0" Grid.Column="1" Click="btnLoadAssessment_Click"/>
-            <Button Name="btnDisplayAssessment" Content="Display Assessment" Grid.Row="0" Grid.Column="2" Click="btnDisplayAssessment_Click"/>
-            <Button Name="btnSetGrade" Content="Set Grade" Grid.Row="0" Grid.Column="3" Click="btnSetGrade_Click" />
-            <Button Name="btnDisplayGrade" Content="Display Grade" Grid.Row="0" Grid.Column="4" Click="btnDisplayGrade_Click" />
-            <Button Name="btnExit" Content="Exit" Grid.Row="0" Grid.Column="6" Click="btnExit_Click"/>
-            <Button Name="btnClearDisplay" Content="Clear Display" Grid.Row="0" Grid.Column="5" Click="btnClearDisplay_Click" />
+            <Button Name="btnCreateStudent" Content="Create Student" IsEnabled="False" Grid.Row="0" Grid.Column="0" Click="BtnCreateStudent_Click"/>
+            <Button Name="btnLoadAssessment" Content="Load Assessment" IsEnabled="False" Grid.Row="0" Grid.Column="1" Click="BtnLoadAssessment_Click"/>
+            <Button Name="btnDisplayAssessment" Content="Display Assessment" Grid.Row="0" Grid.Column="2" Click="BtnDisplayAssessment_Click"/>
+            <Button Name="btnSetGrade" Content="Set Grade" Grid.Row="0" Grid.Column="3" Click="BtnSetGrade_Click" />
+            <Button Name="btnDisplayGrade" Content="Display Grade" Grid.Row="0" Grid.Column="4" Click="BtnDisplayGrade_Click" />
+            <Button Name="btnExit" Content="Exit" Grid.Row="0" Grid.Column="6" Click="BtnExit_Click"/>
+            <Button Name="btnClearDisplay" Content="Clear Display" Grid.Row="0" Grid.Column="5" Click="BtnClearDisplay_Click" />
         </Grid>
     </Grid>
 </Window>

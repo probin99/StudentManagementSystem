@@ -9,8 +9,6 @@ namespace StudentManagementSystem.Model
     
    public class Subject : AssessmentDetails
     {
-        public string subName { get; set; }
-       
-
+        public string SubName { get; set; }
     }
 }

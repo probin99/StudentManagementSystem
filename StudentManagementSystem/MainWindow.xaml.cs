@@ -33,7 +33,7 @@ namespace StudentManagementSystem
         }
 
         
-        private void btnCreateStudent_Click(object sender, RoutedEventArgs e)
+        private void BtnCreateStudent_Click(object sender, RoutedEventArgs e)
         {
             txtPerformanceOutput.Clear();
             StringBuilder outputString = new StringBuilder();
@@ -44,7 +44,7 @@ namespace StudentManagementSystem
             btnLoadAssessment.IsEnabled = true;
         }
 
-        private void txtStudentName_TextChanged(object sender, TextChangedEventArgs e)
+        private void TxtStudentName_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!string.IsNullOrEmpty(txtStudentName.Text))
             {
@@ -66,14 +66,13 @@ namespace StudentManagementSystem
             }
         }
 
-        private void txtYearLevel_TextChanged_1(object sender, TextChangedEventArgs e)
+        private void TxtYearLevel_TextChanged_1(object sender, TextChangedEventArgs e)
         {
             if (!string.IsNullOrEmpty(txtYearLevel.Text))
             {
-                int yearLevelValueCheck;
                 if ((txtYearLevel.Text == "11") 
                     || (txtYearLevel.Text == "12") 
-                    && (int.TryParse(txtYearLevel.Text, out yearLevelValueCheck)))
+                    && (int.TryParse(txtYearLevel.Text, out int yearLevelValueCheck)))
                 {
                     btnCreateStudent.IsEnabled = true;
                     txtPerformanceOutput.Text = "You can now add student using the create student button.";
@@ -91,7 +90,7 @@ namespace StudentManagementSystem
             }
         }
 
-        public void btnLoadAssessment_Click(object sender, RoutedEventArgs e)
+        public void BtnLoadAssessment_Click(object sender, RoutedEventArgs e)
         {
             //Excel file data read
             string filePath = @"C:\Users\Probin\source\repos\StudentManagementSystem\StudentManagementSystem\Excel Data File\COIT20256Ass1Data.csv";
@@ -104,7 +103,7 @@ namespace StudentManagementSystem
                 var values = item.Split(',');
                 subjectList.Add(new Subject()
                 {
-                    subName = values[0],
+                    SubName = values[0],
                     AssessmentId = Convert.ToDecimal(values[1]),
                     Type = values[2],
                     Topic = values[3],
@@ -115,18 +114,18 @@ namespace StudentManagementSystem
             }
 
             //combobox for subjects
-            cbSubjects.ItemsSource = subjectList.Select(x => x.subName).Distinct();
+            cbSubjects.ItemsSource = subjectList.Select(x => x.SubName).Distinct();
         }
 
 
-        private void cbSubject_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CbSubject_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //combobox for Assessments
-            var queryFirst = from a in subjectList where(a.subName.Contains(cbSubjects.SelectedItem.ToString())) select new { a.subName, a.AssessmentId, a.Type };
+            var queryFirst = from a in subjectList where(a.SubName.Contains(cbSubjects.SelectedItem.ToString())) select new { a.SubName, a.AssessmentId, a.Type };
             List<string> filterText = new List<string>();
             foreach(var row in queryFirst)
             {
-                filterText.Add(row.subName + "," + row.AssessmentId + "," + row.Type);
+                filterText.Add(row.SubName + "," + row.AssessmentId + "," + row.Type);
             }
             if (filterText.Count() == queryFirst.Count())
             {
@@ -134,20 +133,20 @@ namespace StudentManagementSystem
             }
         }
 
-        private void btnDisplayAssessment_Click(object sender, RoutedEventArgs e)
+        private void BtnDisplayAssessment_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(txtStudentName.Text) && !string.IsNullOrEmpty(txtYearLevel.Text))
             {
                 if (cbSubjects.SelectedItem != null)
                 {
                     //show relevant data in textbox
-                    var querySecond = subjectList.Select(a => a).Where(a => a.subName.Contains(cbSubjects.SelectedItem.ToString()));
+                    var querySecond = subjectList.Select(a => a).Where(a => a.SubName.Contains(cbSubjects.SelectedItem.ToString()));
                     string resultA = string.Empty;
                     string resultB = string.Empty;
 
                     foreach (var p in querySecond)
                     {
-                        resultA = p.subName + ": " + "\n";
+                        resultA = p.SubName + ": " + "\n";
                         resultB += "Id: " + p.AssessmentId + ", Type: " + p.Type + ", Topic: " + p.Topic + ", Format: " + p.Format + ", DueDate: " + p.DueDate + ", Achievement: " + p.Mark + "\n";
                     }
                     txtPerformanceOutput.Clear();
@@ -166,12 +165,12 @@ namespace StudentManagementSystem
             }
         }
 
-        private void btnExit_Click(object sender, RoutedEventArgs e)
+        private void BtnExit_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
         }
 
-        private void btnSetGrade_Click(object sender, RoutedEventArgs e)
+        private void BtnSetGrade_Click(object sender, RoutedEventArgs e)
         {
             if (cbAssessments.SelectedItem != null)
             {
@@ -183,12 +182,12 @@ namespace StudentManagementSystem
                     double idValue = double.Parse(getAssessmentID.ElementAt(0));
 
                     //set grade
-                    var idAndNameCheck = subjectList.Where(a => a.subName == cbSubjects.Text && a.AssessmentId.ToString() == idValue.ToString()).Select(a => a.AssessmentId);
+                    var idAndNameCheck = subjectList.Where(a => a.SubName == cbSubjects.Text && a.AssessmentId.ToString() == idValue.ToString()).Select(a => a.AssessmentId);
                     if (idAndNameCheck.Count() > 0)
                     {
                         foreach (decimal id in idAndNameCheck)
                         {
-                            subjectList.Where(a => a.subName == cbSubjects.Text && a.AssessmentId.ToString() == idValue.ToString()).FirstOrDefault().Mark = true;
+                            subjectList.Where(a => a.SubName == cbSubjects.Text && a.AssessmentId.ToString() == idValue.ToString()).FirstOrDefault().Mark = true;
                         }
                     }
                     string resultA = "Grade has been set";
@@ -207,11 +206,11 @@ namespace StudentManagementSystem
                 txtPerformanceOutput.Text = "Please select assessment to set grade";
             }
         }
-        private void btnDisplayGrade_Click(object sender, RoutedEventArgs e)
+        private void BtnDisplayGrade_Click(object sender, RoutedEventArgs e)
         {
             txtPerformanceOutput.Clear();
             int comboIndex = cbAssessments.SelectedIndex;
-            var query = subjectList.Select(a => a).Where(a => a.subName.Contains(cbSubjects.SelectedItem.ToString()));
+            var query = subjectList.Select(a => a).Where(a => a.SubName.Contains(cbSubjects.SelectedItem.ToString()));
             string resultA = string.Empty;
             int i = 0;
 
@@ -219,7 +218,7 @@ namespace StudentManagementSystem
             {
                 if (i == comboIndex)
                 {
-                    resultA = p.subName + "\n" 
+                    resultA = p.SubName + "\n" 
                         + "Id" + "\t" + p.AssessmentId + "\n"
                         + "Type" + "\t" + p.Type + "\n"
                         + "Topic" + "\t" + p.Topic + "\n"
@@ -233,13 +232,13 @@ namespace StudentManagementSystem
             txtPerformanceOutput.Text = resultA;
         }
 
-        private void btnClearDisplay_Click(object sender, RoutedEventArgs e)
+        private void BtnClearDisplay_Click(object sender, RoutedEventArgs e)
         {
             Process.Start(Application.ResourceAssembly.Location);
             Application.Current.Shutdown();
         }
 
-        private void cbAssessments_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CbAssessments_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             cbAchievements.IsEnabled = true;
         }

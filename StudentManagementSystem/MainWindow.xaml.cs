@@ -71,7 +71,9 @@ namespace StudentManagementSystem
             if (!string.IsNullOrEmpty(txtYearLevel.Text))
             {
                 int yearLevelValueCheck;
-                if ((txtYearLevel.Text == "11") || (txtYearLevel.Text == "12") && (int.TryParse(txtYearLevel.Text, out yearLevelValueCheck)))
+                if ((txtYearLevel.Text == "11") 
+                    || (txtYearLevel.Text == "12") 
+                    && (int.TryParse(txtYearLevel.Text, out yearLevelValueCheck)))
                 {
                     btnCreateStudent.IsEnabled = true;
                     txtPerformanceOutput.Text = "You can now add student using the create student button.";
@@ -91,6 +93,7 @@ namespace StudentManagementSystem
 
         public void btnLoadAssessment_Click(object sender, RoutedEventArgs e)
         {
+            //Excel file data read
             string filePath = @"C:\Users\Probin\source\repos\StudentManagementSystem\StudentManagementSystem\Excel Data File\COIT20256Ass1Data.csv";
 
             //Linq query to read csv file

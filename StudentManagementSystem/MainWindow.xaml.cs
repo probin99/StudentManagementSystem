@@ -146,6 +146,7 @@ namespace StudentManagementSystem
 
                     foreach (var p in querySecond)
                     {
+                        //Display Assessment Details
                         resultA = p.SubName + ": " + "\n";
                         resultB += "Id: " + p.AssessmentId + ", Type: " + p.Type + ", Topic: " + p.Topic + ", Format: " + p.Format + ", DueDate: " + p.DueDate + ", Achievement: " + p.Mark + "\n";
                     }
@@ -218,6 +219,7 @@ namespace StudentManagementSystem
             {
                 if (i == comboIndex)
                 {
+                    
                     resultA = p.SubName + "\n" 
                         + "Id" + "\t" + p.AssessmentId + "\n"
                         + "Type" + "\t" + p.Type + "\n"
